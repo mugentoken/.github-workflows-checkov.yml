@@ -1,0 +1,20 @@
+name: Checkov Static Security Analysis
+
+on: [pull_request]
+
+jobs:
+  checkov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Install Checkov
+        run: |
+          pip install checkov
+        shell: bash
+
+      - name: Run Checkov
+        run: |
+          checkov -d .
+        shell: bash
